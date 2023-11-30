@@ -33,6 +33,7 @@ const (
 	GameCreatedEventGameIndex = "game-index"
 	GameCreatedEventBlack     = "black"
 	GameCreatedEventRed       = "red"
+	GameCreatedEventWager     = "wager"
 )
 
 const (
