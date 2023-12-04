@@ -8,3 +8,7 @@ test:
 
 test-i:
 	go test -v github.com/alice/checkers/tests/integration/checkers/keeper
+
+test-all:
+	make test
+	make test-i
