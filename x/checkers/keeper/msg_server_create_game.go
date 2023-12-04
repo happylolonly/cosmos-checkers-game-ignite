@@ -18,6 +18,12 @@ func (k msgServer) CreateGame(goCtx context.Context, msg *types.MsgCreateGame) (
 	}
 	newIndex := strconv.FormatUint(systemInfo.NextId, 10)
 
+	denom := msg.Denom
+
+	if denom == "" {
+		denom = sdk.DefaultBondDenom
+	}
+
 	newGame := rules.New()
 	storedGame := types.StoredGame{
 		Index:       newIndex,
@@ -31,7 +37,7 @@ func (k msgServer) CreateGame(goCtx context.Context, msg *types.MsgCreateGame) (
 		BeforeIndex: types.NoFifoIndex,
 		AfterIndex:  types.NoFifoIndex,
 		Wager:       msg.Wager,
-		Denom:       msg.Denom,
+		Denom:       denom,
 	}
 
 	err := storedGame.Validate()

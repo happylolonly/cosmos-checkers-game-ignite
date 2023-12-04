@@ -63,6 +63,7 @@ func TestCreate1GameHasSaved(t *testing.T) {
 		BeforeIndex: "-1",
 		AfterIndex:  "-1",
 		Wager:       50,
+		Denom:       "stake",
 	}, game1)
 }
 
@@ -88,6 +89,7 @@ func TestCreate1GameGetAll(t *testing.T) {
 		BeforeIndex: types.NoFifoIndex,
 		AfterIndex:  types.NoFifoIndex,
 		Wager:       50,
+		Denom:       "stake",
 	}, games[0])
 }
 
@@ -186,6 +188,7 @@ func TestCreate3GamesHasSaved(t *testing.T) {
 		BeforeIndex: "-1",
 		AfterIndex:  "2",
 		Wager:       50,
+		Denom:       "stake",
 	}, game1)
 	game2, found2 := keeper.GetStoredGame(ctx, "2")
 	require.True(t, found2)
@@ -201,6 +204,7 @@ func TestCreate3GamesHasSaved(t *testing.T) {
 		BeforeIndex: "1",
 		AfterIndex:  "3",
 		Wager:       51,
+		Denom:       "stake",
 	}, game2)
 	game3, found3 := keeper.GetStoredGame(ctx, "3")
 	require.True(t, found3)
@@ -216,6 +220,7 @@ func TestCreate3GamesHasSaved(t *testing.T) {
 		BeforeIndex: "2",
 		AfterIndex:  "-1",
 		Wager:       52,
+		Denom:       "stake",
 	}, game3)
 }
 
@@ -254,6 +259,7 @@ func TestCreate3GamesGetAll(t *testing.T) {
 		BeforeIndex: "-1",
 		AfterIndex:  "2",
 		Wager:       50,
+		Denom:       "stake",
 	}, games[0])
 	require.EqualValues(t, types.StoredGame{
 		Index:       "2",
@@ -267,6 +273,7 @@ func TestCreate3GamesGetAll(t *testing.T) {
 		BeforeIndex: "1",
 		AfterIndex:  "3",
 		Wager:       53,
+		Denom:       "stake",
 	}, games[1])
 	require.EqualValues(t, types.StoredGame{
 		Index:       "3",
@@ -280,6 +287,7 @@ func TestCreate3GamesGetAll(t *testing.T) {
 		BeforeIndex: "2",
 		AfterIndex:  "-1",
 		Wager:       55,
+		Denom:       "stake",
 	}, games[2])
 }
 
@@ -321,6 +329,7 @@ func TestCreateGameFarFuture(t *testing.T) {
 		BeforeIndex: types.NoFifoIndex,
 		AfterIndex:  types.NoFifoIndex,
 		Wager:       100,
+		Denom:       "stake",
 	}, game1)
 }
 
@@ -331,6 +340,7 @@ func TestCreate1GameEmitted(t *testing.T) {
 		Black:   bob,
 		Red:     carol,
 		Wager:   52,
+		Denom:   "stake",
 	})
 	ctx := sdk.UnwrapSDKContext(context)
 	require.NotNil(t, ctx)
@@ -345,6 +355,7 @@ func TestCreate1GameEmitted(t *testing.T) {
 			{Key: "black", Value: bob},
 			{Key: "red", Value: carol},
 			{Key: "wager", Value: "52"},
+			{Key: "denom", Value: "stake"},
 		},
 	}, event)
 }

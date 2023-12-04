@@ -51,6 +51,7 @@ func TestWagerHandlerCollectFailedNoMove(t *testing.T) {
 		Black:     alice,
 		MoveCount: 0,
 		Wager:     45,
+		Denom:     "stake",
 	})
 	require.NotNil(t, err)
 	require.EqualError(t, err, "black cannot pay the wager: oops")
@@ -82,6 +83,7 @@ func TestWagerHandlerCollectFailedOneMove(t *testing.T) {
 		Red:       bob,
 		MoveCount: 1,
 		Wager:     45,
+		Denom:     "stake",
 	})
 	require.NotNil(t, err)
 	require.EqualError(t, err, "red cannot pay the wager: oops")
@@ -96,6 +98,7 @@ func TestWagerHandlerCollectNoMove(t *testing.T) {
 		Black:     alice,
 		MoveCount: 0,
 		Wager:     45,
+		Denom:     "stake",
 	})
 	require.Nil(t, err)
 }
@@ -109,6 +112,7 @@ func TestWagerHandlerCollectOneMove(t *testing.T) {
 		Red:       bob,
 		MoveCount: 1,
 		Wager:     45,
+		Denom:     "stake",
 	})
 	require.Nil(t, err)
 }
@@ -124,6 +128,7 @@ func TestWagerHandlerPayWrongNoWinnerAddress(t *testing.T) {
 	}()
 	keeper.MustPayWinnings(ctx, &types.StoredGame{
 		Winner: "b",
+		Denom:  "stake",
 	})
 }
 
@@ -140,6 +145,7 @@ func TestWagerHandlerPayWrongWinnerNotFound(t *testing.T) {
 		Black:  alice,
 		Red:    bob,
 		Winner: "*",
+		Denom:  "stake",
 	})
 }
 
@@ -157,6 +163,7 @@ func TestWagerHandlerPayWrongNotPayTime(t *testing.T) {
 		Red:       bob,
 		Winner:    "b",
 		MoveCount: 0,
+		Denom:     "stake",
 	})
 }
 
@@ -180,6 +187,7 @@ func TestWagerHandlerPayWrongEscrowFailed(t *testing.T) {
 		Winner:    "b",
 		MoveCount: 1,
 		Wager:     45,
+		Denom:     "stake",
 	})
 }
 
@@ -194,6 +202,7 @@ func TestWagerHandlerPayEscrowCalledOneMove(t *testing.T) {
 		Winner:    "b",
 		MoveCount: 1,
 		Wager:     45,
+		Denom:     "stake",
 	})
 }
 
@@ -208,6 +217,7 @@ func TestWagerHandlerPayEscrowCalledTwoMoves(t *testing.T) {
 		Winner:    "b",
 		MoveCount: 2,
 		Wager:     45,
+		Denom:     "stake",
 	})
 }
 
@@ -222,6 +232,7 @@ func TestWagerHandlerRefundWrongManyMoves(t *testing.T) {
 	}()
 	keeper.MustRefundWager(ctx, &types.StoredGame{
 		MoveCount: 2,
+		Denom:     "stake",
 	})
 }
 
@@ -231,6 +242,7 @@ func TestWagerHandlerRefundNoMoves(t *testing.T) {
 	defer ctrl.Finish()
 	keeper.MustRefundWager(ctx, &types.StoredGame{
 		MoveCount: 0,
+		Denom:     "stake",
 	})
 }
 
@@ -245,6 +257,7 @@ func TestWagerHandlerRefundWrongNoBlack(t *testing.T) {
 	}()
 	keeper.MustRefundWager(ctx, &types.StoredGame{
 		MoveCount: 1,
+		Denom:     "stake",
 	})
 }
 
@@ -266,6 +279,7 @@ func TestWagerHandlerRefundWrongEscrowFailed(t *testing.T) {
 		Black:     alice,
 		MoveCount: 1,
 		Wager:     45,
+		Denom:     "stake",
 	})
 }
 
@@ -278,5 +292,6 @@ func TestWagerHandlerRefundCalled(t *testing.T) {
 		Black:     alice,
 		MoveCount: 1,
 		Wager:     45,
+		Denom:     "stake",
 	})
 }
