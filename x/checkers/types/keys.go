@@ -34,6 +34,7 @@ const (
 	GameCreatedEventBlack     = "black"
 	GameCreatedEventRed       = "red"
 	GameCreatedEventWager     = "wager"
+	GameCreatedEventDenom     = "denom"
 )
 
 const (
